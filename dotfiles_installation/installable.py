@@ -52,7 +52,7 @@ def execute_command(command, dryrun):
 
 def get_filename(path):
     logging.debug("Determining file name for path: '{}'".format(path))
-    *_, filename = path_split(path)
+    _, filename = path_split(path)
     logging.debug("File name is: {}".format(filename))
     return filename
 
