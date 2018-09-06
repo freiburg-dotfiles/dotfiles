@@ -43,3 +43,5 @@ export TF_CPP_MIN_LOG_LEVEL=2
 
 
 # source /opt/ros/kinetic/setup.zsh
+# open new tab in current directory
+[[ -f /etc/profile.d/vte-2.91.sh ]] && . /etc/profile.d/vte-2.91.sh
