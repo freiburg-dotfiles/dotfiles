@@ -3,14 +3,18 @@
   apt: name="i3-wm" state=present update_cache=yes
   become: yes
 
+- name: i3status
+  apt: name="i3status" state=present update_cache=yes
+  become: yes
+
 - name: configuration directory
   file: 
-    path: "/home/{{ user }}/i3"
+    path: "/home/{{ user }}/.i3"
     state: directory
     mode: 0755
     owner: "{{ user }}"
 
-- name: i3wm configuration
+- name: i3wm and statusbar configuration
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
     - { src: '{{ playbook_dir }}/../../i3/config', dest: '/home/{{ user }}/i3/config' }
