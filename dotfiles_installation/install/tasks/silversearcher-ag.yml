@@ -1,0 +1,6 @@
+---
+- name: silversearcher-ag
+  apt: name="silversearcher-ag" update_cache="yes" state="present"
+  become: yes
+
+

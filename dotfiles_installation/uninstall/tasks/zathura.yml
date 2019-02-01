@@ -1,0 +1,15 @@
+---
+- name: zathura
+  apt: name="zathura" update_cache="yes" state="absent"
+  become: yes
+
+- name: zathura configuration
+  file: 
+    path: "/home/{{ user }}/.config/zathura/zathurarc"
+    state: absent
+
+- name: configuration directory
+  file: 
+    path: "/home/{{ user }}/.config/zathura"
+    state: absent
+

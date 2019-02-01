@@ -1,0 +1,26 @@
+---
+- name: zsh
+  apt: name="zsh" update_cache="yes" state="absent"
+  become: yes
+
+
+- name: fortune-cookies
+  apt: 
+    name: ["fortune", "fortunes", "fortunes-de"]
+    update_cache: "yes"
+    state: "absent"
+  become: yes
+  tags: ["fortune-cookies", "fortune", "fortunes"]
+
+- name: reset bash to default shell
+  command: usermod -s "/bin/bash" "{{ user }}"
+
+- name: zsh configuration
+  file: 
+    path: /home/{{ user }}/.zsh
+    state: absent
+
+- name: zshrc
+  file:
+    path: /home/{{ user }}/.zshrc
+    state: absent

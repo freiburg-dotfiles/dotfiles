@@ -1,0 +1,18 @@
+---
+- name: i3wm
+  apt: name="i3-wm" state=absent update_cache=yes
+  become: yes
+
+- name: i3wm configuration
+  file: 
+    path: dest={{ item.dest }}
+    state: absent
+  with_items:
+    - { src: '{{ playbook_dir }}/../../i3/config', dest: '/home/{{ user }}/i3/config' }
+    - { src: '{{ playbook_dir }}/../../i3/i3status.conf', dest: '/home/{{ user }}/i3/i3status.conf' }
+    - { src: '{{ playbook_dir }}/../../i3/i3_layout_start.sh', dest: '/home/{{ user }}/i3/i3_layout_start.sh' }
+
+- name: configuration directory
+  file: 
+    path: "/home/{{ user }}/i3"
+    state: absent

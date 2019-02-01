@@ -1,0 +1,8 @@
+---
+
+- name: anki
+  apt: 
+    name: ["anki", "dvipng"]
+    state: present 
+    update_cache: yes
+  become: yes

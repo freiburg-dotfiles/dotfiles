@@ -1,0 +1,36 @@
+---
+- name: vim
+  apt: 
+    name: ["vim-gnome", "git-core", "python3"]
+    state: present 
+    update_cache: yes
+  become: yes
+
+- name: vimrc
+  copy: src="{{ playbook_dir }}/../../vim/vimrc" dest="/home/{{ user }}/.vimrc"
+
+- name: configuration directory
+  file: 
+    path: "/home/{{ user }}/.vim"
+    state: directory
+    mode: 0755
+    owner: "{{ user }}"
+
+- name: vundle
+  git: repo=https://github.com/gmarik/Vundle.vim.git dest="/home/{{ user }}/.vim/bundle/Vundle.vim"
+
+- name: vundle plugins
+  shell: vim +PluginInstall +qall
+
+- name: YouCompleteMe dependencies
+  apt: name={{ item }} cache_valid_time=3600 state=present update_cache=yes
+  become: yes
+  with_items:
+      - build-essential 
+      - cmake 
+      - python3-dev
+
+- name: YouCompleteMe
+  shell: python install.py
+  args:
+    chdir: "/home/{{ user }}/.vim/bundle/YouCompleteMe"

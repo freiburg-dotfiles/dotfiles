@@ -1,0 +1,5 @@
+[targets]
+localhost ansible_connection=local ansible_user="{{ lookup('env', 'USER') }}"
+
+[targets:vars]
+user={{ lookup('env', "USER") }}

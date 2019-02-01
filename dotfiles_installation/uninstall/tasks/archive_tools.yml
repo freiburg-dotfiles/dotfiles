@@ -1,0 +1,7 @@
+---
+- name: archive_tools
+  apt: 
+    name: ["unrar-free", "unzip"]
+    state: absent 
+    update_cache: yes
+  become: yes

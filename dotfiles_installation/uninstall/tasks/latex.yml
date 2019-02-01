@@ -1,0 +1,12 @@
+---
+- name: latex
+  apt:
+      name: ["texlive", "texlive-lang-german", "texlive-latex-extra",
+             "texlive-latex-base", "texlive-luatex", "texlive-xetex",
+             "texlive-science", "texlive-pstricks", "texlive-lang-english",
+             "texlive-extra-utils", "texlive-fonts-extra", 
+             "texlive-fonts-recommended"]
+
+      update_cache: yes
+      state: absent
+  become: yes

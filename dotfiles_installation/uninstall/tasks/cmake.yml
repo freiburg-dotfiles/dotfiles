@@ -1,0 +1,7 @@
+---
+- name: cmake
+  apt: 
+    name: "cmake"
+    state: absent 
+    update_cache: yes
+  become: yes

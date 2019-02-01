@@ -1,7 +1,7 @@
 [alias]
     aliases = config --get-regexp ^alias\\.
     discard = checkout --
-    generate-ignore = "!gi()A { curl -L -s https://www.gitignore.io/api/$@ ; }; gi"
+    generate-ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ; }; gi > .gitignore"
     list-tracked = ls-tree -r HEAD --name-only
     list-ignored = ls-files --others -i --exclude-standard
     new-branch = checkout -b
@@ -13,3 +13,6 @@
     type = cat-file -t
     dump = cat-file -p
     update = "!git pull && git submodule update --init --recursive"
+    add-upstream=remote add upstream
+    remote-url=remote -v
+    count-commits=rev-list --count HEAD

@@ -1,0 +1,14 @@
+---
+- name: zathura
+  apt: name="zathura" update_cache="yes" state="present"
+  become: yes
+
+- name: configuration directory
+  file: 
+    path: "/home/{{ user }}/.config/zathura"
+    state: directory
+    mode: 0755
+    owner: "{{ user }}"
+
+- name: zathura configuration
+  copy: src="{{ playbook_dir }}/../../zathura/zathurarc" dest="/home/{{ user }}/.config/zathura/zathurarc"

@@ -1,5 +1,7 @@
 alias molmed_server="xfreerdp +home-drive +clipboard +fonts -grab-keyboard /monitors:0 /f -themes -wallpaper /v:132.230.131.5 /u:moritz"
 
+alias calc="/usr/lib/libreoffice/program/scalc"
+
 # Unix Commands                                         {{{
 
 #  Python {{{ # 

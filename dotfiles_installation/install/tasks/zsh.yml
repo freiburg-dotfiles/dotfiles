@@ -1,0 +1,21 @@
+---
+- name: zsh
+  apt: name="zsh" update_cache="yes" state="present"
+  become: yes
+
+- name: fortune-cookies
+  apt: 
+    name: ["fortune", "fortunes", "fortunes-de"]
+    update_cache: "yes"
+    state: "present"
+  become: yes
+  tags: ["fortune-cookies", "fortune", "fortunes"]
+
+- name: zsh configuration
+  copy: src="{{ playbook_dir }}../../zsh" dest=/home/{{ user }}/.zsh
+
+- name: zshrc
+  move: src=/home/{{ user }}/.zsh/zshrc dest=/home/{{ user }}/.zshrc
+
+- name: zsh default shell
+  command: usermod -s "/bin/zsh" "{{ user }}"

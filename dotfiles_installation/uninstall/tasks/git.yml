@@ -1,0 +1,6 @@
+---
+- name: git
+  apt: name="git" state=absent update_cache=yes
+  become: yes
+
+

@@ -2,6 +2,11 @@ unroche(){
     cat $1 | sed 's~controllerType=0 controllerNumber=1 scan=~~g'
 }
 
+
+analyze_repository() {
+    python3 "$HOME/git-of-theseus/analyze_repository.py" "$@"
+}
+
 #####################################################
 #   TENSORFLOW                                      #
 #####################################################

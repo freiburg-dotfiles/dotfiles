@@ -1,0 +1,40 @@
+- hosts: localhost
+  tasks:
+      - include: tasks/anki.yml
+        tags: [ "never", "anki", "Anki" ]
+
+      - include: tasks/archive_tools.yml
+        tags: ["archive_tools", "minimal"]
+
+      - include: tasks/cmake.yml
+        tags: ["cmake", "minimal"]
+
+      - include: tasks/git.yml
+        tags: ["git", "minimal"]
+
+      - include: tasks/i3wm.yml
+        tags: ["i3wm", "i3", "requires-x", "x-server", "gui" ]
+
+      - include: tasks/latex.yml
+        tags: [ "latex", "anki", "Anki" ]
+
+      - include: tasks/mutt.yml
+        tags: [ "mutt", "mail", "email" ]
+
+      - include: tasks/scrot.yml
+        tags: [ "scrot", "requires-x", "x-server", "gui" ]
+
+      - include: tasks/silversearcher-ag.yml
+        tags: [ "ag", "silversearcher-ag", "minimal" ]
+
+      - include: tasks/subversion.yml
+        tags: [ "never", "subversion" ]
+
+      - include: tasks/sxiv.yml
+        tags: [ "sxiv", "requires-x", "x-server", "gui" ]
+
+      - include: tasks/vim.yml
+        tags: [ "vim", "minimal" ]
+
+      - include: tasks/zathura.yml
+        tags: [ "zathura", "requires-x", "x-server", "gui" ]

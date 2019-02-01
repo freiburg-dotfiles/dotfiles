@@ -1,0 +1,17 @@
+---
+- name: vim
+  apt: 
+    name: ["vim-gnome"]
+    state: absent 
+    update_cache: yes
+  become: yes
+
+- name: vimrc
+  file: 
+    path: "/home/{{ user }}/.vimrc"
+    state: absent
+
+- name: configuration directory
+  file: 
+    path: "/home/{{ user }}/.vim"
+    state: absent

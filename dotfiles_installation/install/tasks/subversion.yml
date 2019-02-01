@@ -1,0 +1,5 @@
+---
+- name: subversion
+  apt: name="subversion" update_cache="yes" state="present"
+  become: yes
+

@@ -1,0 +1,5 @@
+---
+- name: scrot
+  apt: name="scrot" state="present" update_cache="yes"
+  become: yes
+
