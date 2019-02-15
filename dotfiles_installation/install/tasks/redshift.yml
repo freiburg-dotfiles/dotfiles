@@ -1,0 +1,7 @@
+---
+- name: redshift
+  apt: 
+    name: ["redshift-gtk"]
+    state: present 
+    update_cache: yes
+  become: yes

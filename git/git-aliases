@@ -8,11 +8,13 @@
     push-branch = "!git push -u origin `git rev-parse --abbrev-ref HEAD`"
     uncommit = reset --mixed HEAD~
     unstage = reset -q HEAD --
-    st = status
     hist = "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
     type = cat-file -t
     dump = cat-file -p
     update = "!git pull && git submodule update --init --recursive"
     add-upstream=remote add upstream
+    remove-upstream=remote rm upstream
+    update-branch="!git fetch --all && git rebase upstream/master"
     remote-url=remote -v
     count-commits=rev-list --count HEAD
+    branches=branch -a

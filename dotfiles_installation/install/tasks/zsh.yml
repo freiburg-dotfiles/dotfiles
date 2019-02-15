@@ -11,7 +11,6 @@
   become: yes
   tags: ["fortune-cookies", "fortune", "fortunes"]
 
-
 - name: zsh configuration
   copy:
     src: "{{ playbook_dir }}/../../zsh/"
@@ -21,8 +20,7 @@
     mode: 0755
 
 - name: zshrc
-  command: mv "/home/{{ user }}/.zsh/zshrc" "/home/{{ user }}/.zshrc"
-  become: yes
+  copy: src={{ playbook_dir }}/../../zsh/zshrc dest=/home/{{ user }}/.zshrc
 
 - name: zsh default shell
   command: usermod -s "/bin/zsh" "{{ user }}"

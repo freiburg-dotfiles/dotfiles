@@ -1,7 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 # Make mypy aware of shebang line and choose right python version 
 # for its checks accordingly - defaults to python3
+mypy_bin=`which mypy`
+
+if [[ "$1" = "--version" ]]; then
+    $mypy_bin "$@"
+fi
 
 FILENAME="$1"
 read -r firstline < $FILENAME
@@ -9,7 +14,6 @@ read -r firstline < $FILENAME
 DEFAULT_PYTHON="python3"
 ARGS="--ignore-missing-imports"
 
-mypy_bin=`which mypy`
 
 python3_bin=`which python3`
 python2_bin=`which python2`

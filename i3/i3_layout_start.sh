@@ -34,7 +34,7 @@ else
     # run code that runs without network
     # Start redshift-gtk in "manual" mode which does not require network
     # connections to get my geolocation
-    redshift-gtk -l 47.50:7.60 & disown
+    command -v redshift && redshift-gtk -l 47.50:7.60 & disown
     # Open a terminal on workspace 4 
     i3-msg 'workspace 3; exec i3-sensible-terminal' & disown
     # Open a terminal on workspace 5 

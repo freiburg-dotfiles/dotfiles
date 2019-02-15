@@ -24,8 +24,6 @@ python ~/speed_up_keyboard/keyboard_increase.py
 source ~/.zsh/keyboard_speed.zsh
 #source ~/update_dotfiles.sh &> /dev/null
 
-eval `opam config env`
-
 function preexec() {
     python "$DOTFILES_REPOSITORY_PATH/has_alias/has_alias.py" "$1"
 }

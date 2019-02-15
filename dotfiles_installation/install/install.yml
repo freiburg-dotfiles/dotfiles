@@ -7,7 +7,7 @@
         tags: [ "never", "anki", "Anki" ]
 
       - include: tasks/archive_tools.yml
-        tags: ["archive_tools", "minimal"]
+        tags: [ "archive_tools", "minimal"]
 
       - include: tasks/cmake.yml
         tags: ["cmake", "minimal"]
@@ -23,6 +23,9 @@
 
       - include: tasks/mutt.yml
         tags: [ "mutt", "mail", "email" ]
+
+      - include: tasks/redshift.yml
+        tags: [ "redshift", "requires-x", "x-server", "gui" ]
 
       - include: tasks/scrot.yml
         tags: [ "scrot", "requires-x", "x-server", "gui" ]
@@ -41,6 +44,3 @@
 
       - include: tasks/zathura.yml
         tags: [ "zathura", "requires-x", "x-server", "gui" ]
-
-      - include: tasks/productivity-helpers.yml
-        tags: [ "productivity", "helpers" ]

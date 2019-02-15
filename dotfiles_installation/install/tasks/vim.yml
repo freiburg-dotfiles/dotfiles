@@ -6,6 +6,13 @@
     update_cache: yes
   become: yes
 
+- name: mypy and flake8
+  pip:
+      name:
+        - flake8
+        - mypy
+  become: yes
+
 - name: vimrc
   copy: src="{{ playbook_dir }}/../../vim/vimrc" dest="/home/{{ user }}/.vimrc"
 
