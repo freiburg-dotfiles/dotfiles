@@ -7,6 +7,10 @@
   apt: name="i3status" state=present update_cache=yes
   become: yes
 
+- name: i3lock
+  apt: name="i3lock" state=present update_cache=yes
+  become: yes
+
 - name: configuration directory
   file: 
     path: "/home/{{ user }}/.i3"
