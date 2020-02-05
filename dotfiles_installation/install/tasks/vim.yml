@@ -1,52 +1,49 @@
 ---
 - name: vim
-    apt: 
+  apt: 
     name: ["vim-gnome", "git-core", "python3"]
     state: present 
     update_cache: yes
-    become: yes
+  become: yes
 
 - name: mypy and flake8
-    pip:
-      executable: pip3
-      name:
-        - flake8
-        - mypy
-    become: yes
+  pip:
+    executable: pip3
+    name:
+      - flake8
+      - mypy
+  become: yes
 
 - name: vimrc
-    copy: src="{{ playbook_dir }}/../../vim/vimrc" dest="/home/{{ user }}/.vimrc"
+  copy: src="{{ playbook_dir }}/../../vim/vimrc" dest="/home/{{ user }}/.vimrc"
 
 - name: configuration directory
-    file: 
+  file: 
     path: "/home/{{ user }}/.vim"
     state: directory
     mode: 0755
     owner: "{{ user }}"
 
 - name: vundle
-    git: repo=https://github.com/gmarik/Vundle.vim.git dest="/home/{{ user }}/.vim/bundle/Vundle.vim"
+  git: repo=https://github.com/gmarik/Vundle.vim.git dest="/home/{{ user }}/.vim/bundle/Vundle.vim"
 
 - name: vundle plugins
-    shell: vim +PluginInstall +qall
+  shell: vim +PluginInstall +qall
 
 - name: YouCompleteMe dependencies
-    apt:
-      name:
-          [build-essential, cmake, python3-dev]
-      cache_valid_time:
-          3600
-      state:
-          present
-      update_cache:
-          yes
-    become: yes
-    with_items:
-      - build-essential 
-      - cmake 
-      - python3-dev
+  apt:
+    name:
+        [build-essential, cmake, python3-dev]
+    cache_valid_time: 3600
+    state: present
+    update_cache: yes
+  become: yes
+  with_items:
+    - build-essential 
+    - cmake 
+    - python3-dev
 
 - name: YouCompleteMe
-    shell: python install.py
-    args:
+  shell: python3 install.py
+  args:
     chdir: "/home/{{ user }}/.vim/bundle/YouCompleteMe"
