@@ -80,9 +80,6 @@ alias mu='mutt'
 # alsamixer (make darker)
 alias al='alsamixer -g -c 1'
 
-# vim (open as server)
-alias v="vim"
-
 # anki-vim
 alias ankifordeck='cd ~/anki-vim/ && python ~/anki-vim/anki-vim.py -d '
 
