@@ -1,0 +1,29 @@
+---
+- name: install brave browser
+  snap: 
+    name:
+        - brave
+  become: yes
+
+- name: get install directory of `brave`
+  command: which brave
+  register: brave-bin
+
+- name: Make brave browser default for www-browser
+  alternatives:
+      name: www-browser
+      path: brave-bin
+      priority: 100
+
+- name: Make brave browser default for x-www-browser
+  alternatives:
+      name: x-www-browser
+      path: brave-bin
+      priority: 100
+
+
+
+
+
+
+
