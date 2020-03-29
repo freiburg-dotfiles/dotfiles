@@ -1,0 +1,5 @@
+partial xkb_compatibility "escape_mod3" {
+    interpret Escape {
+        action = SetMods(modifiers = Mod3);
+    };
+};

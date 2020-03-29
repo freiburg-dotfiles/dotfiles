@@ -28,7 +28,7 @@
 - name: copy custom caps compatibilty file for xkb to xkb/compat 
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
-    - { src: '{{ playbook_dir }}/../../xkb/custom_caps_to_mod3', dest: '/usr/share/X11/xkb/compat/caps' }
+    - { src: '{{ playbook_dir }}/../../xkb/custom_escape_to_mod3', dest: '/usr/share/X11/xkb/compat/escape_mod3' }
     - { src: '{{ playbook_dir }}/../../xkb/custom_complete_comp', dest: '/usr/share/X11/xkb/compat/complete' }
   become: yes
 
