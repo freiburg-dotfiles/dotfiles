@@ -18,6 +18,9 @@
       - include: tasks/i3wm.yml
         tags: ["i3wm", "i3", "requires-x", "x-server", "gui" ]
 
+      - inlcude: tasks/speedup_keyboard.yml
+        tags: ["i3wm", "i3"]
+
       - include: tasks/latex.yml
         tags: [ "latex", "anki", "Anki" ]
 
@@ -44,3 +47,5 @@
 
       - include: tasks/zathura.yml
         tags: [ "zathura", "requires-x", "x-server", "gui" ]
+      
+
