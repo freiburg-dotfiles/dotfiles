@@ -11,31 +11,17 @@
   become: yes
   tags: ["fortune-cookies", "fortune", "fortunes"]
 
-- name: configuration directory
-  file: 
-    path: "/home/{{ user }}/.zsh"
-    state: directory
-    mode: 0755
-    owner: "{{ user }}"
-
 - name: zsh configuration
-  copy: src="{{ item.src }}" dest="/home/{{ user }}/.zsh"
-  with_items:
-      - { src: "{{ playbook_dir }}/../../zsh/aliases.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/aliases_mf.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/aliases_mr.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/aliases.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/completions.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/exports.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/functions_mf.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/functions.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/globals.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/keyboard_speed.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/os.zsh" }
-      - { src: "{{ playbook_dir }}/../../zsh/prompt.zsh" }
+  copy:
+    src: "{{ playbook_dir }}/../../zsh/"
+    dest: "/home/{{ user }}/.zsh"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
 
 - name: zshrc
   copy: src={{ playbook_dir }}/../../zsh/zshrc dest=/home/{{ user }}/.zshrc
 
 - name: zsh default shell
   command: usermod -s "/bin/zsh" "{{ user }}"
+  become: yes

@@ -1,0 +1,6 @@
+- name: speed up keyboard script 
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: '{{ playbook_dir }}/../../speed_up_keyboard/', dest: '/home/{{ user }}/speed_up_keyboard' }
+
+

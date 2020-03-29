@@ -8,9 +8,10 @@
 
 - name: mypy and flake8
   pip:
-      name:
-        - flake8
-        - mypy
+    executable: pip3
+    name:
+      - flake8
+      - mypy
   become: yes
 
 - name: vimrc
@@ -30,14 +31,19 @@
   shell: vim +PluginInstall +qall
 
 - name: YouCompleteMe dependencies
-  apt: name={{ item }} cache_valid_time=3600 state=present update_cache=yes
+  apt:
+    name:
+        [build-essential, cmake, python3-dev]
+    cache_valid_time: 3600
+    state: present
+    update_cache: yes
   become: yes
   with_items:
-      - build-essential 
-      - cmake 
-      - python3-dev
+    - build-essential 
+    - cmake 
+    - python3-dev
 
 - name: YouCompleteMe
-  shell: python install.py
+  shell: python3 install.py
   args:
     chdir: "/home/{{ user }}/.vim/bundle/YouCompleteMe"
