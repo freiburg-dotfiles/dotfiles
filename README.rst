@@ -28,13 +28,14 @@ An installation of all most commonly used targets can then be done using:
 
 .. code-block:: bash
 
-    ansible-playbook -i dotfiles_installation/localhost_inventory.yml dotfiles_installation/install/install.yml
+    ansible-playbook -i dotfiles_installation/localhost_inventory.yml dotfiles_installation/install/install.yml --ask-become-pass
+`ask-become-pass` is necessary to provide ansible with the ability to make system-level changes where required by the argument `become` in tasks. Not all roles might need this.
 
 To install only a single target with its configuration, e.g. vim, simply do:
 
 .. code-block:: bash
 
-    ansible-playbook -i dotfiles_installation/localhost_inventory.yml dotfiles_installation/install/install.yml --tags="vim"
+    ansible-playbook -i dotfiles_installation/localhost_inventory.yml dotfiles_installation/install/install.yml --tags="vim" 
 
 To list all possible targets do: 
 
