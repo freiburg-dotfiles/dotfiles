@@ -1,0 +1,43 @@
+- name: install pyenv via git
+  git:
+    repo: https://github.com/pyenv/pyenv.git 
+    dest: '/home/{{ user }}/.pyenv'
+
+
+- name: modify .zshrc to export PYENV_ROOT and modify PATH
+  blockinfile:
+      path: '/home/{{ user }}/.zsh/exports.zsh'
+      state: present
+      block: |
+        export PYENV_ROOT="$HOME/.pyenv"
+        export PATH="$PYENV_ROOT/bin:$PATH"
+
+
+- name: ensure pyenv init is run after final path export
+  blockinfile:
+      path: '/home/{{ user }}/.zshrc'
+      state: present
+      block: |
+          if command -v pyenv 1>/dev/null 2>&1; then
+          eval "$(pyenv init -)"
+          fi
+      insertafter: "EOF"
+
+- name: get latest python3.8 version
+  shell: pyenv install --list | grep -i  '\s3.8' | tail -1
+  register: latest_py3_8
+
+- name: check if python3.8 already installed
+  shell: pyenv versions | grep '3.8' 
+  register: pyversion_exists
+
+- name: ensure python3.8 is installed
+  shell: "pyenv install {{ latest_py3_8.stdout }}" 
+  when: pyversion_exists.stdout == ""
+
+- name: change global python to latest py3.8
+  shell: pyenv global {{ latest_py3_8.stdout }}
+
+- name: ensure pip is installed and updated
+  # Not using the python module of ansible because it defaults to the registered default interpreter
+  shell: python -m pip install -U pip

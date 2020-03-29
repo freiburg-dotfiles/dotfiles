@@ -16,9 +16,7 @@ alias jp="jupyter notebook &!"
 #  }}} BPython # 
 
 alias pt="pytest"
-alias python3.6="~/.pyenv/versions/3.6.0/bin/python3.6"
-alias b3.6="python3.6 ~/.pyenv/versions/3.6.0/lib/python3.6/site-packages/bpython/cli.py"
-alias pip3.6="~/.pyenv/versions/3.6.0/bin/pip3.6"
+alias pip="python -m pip"
 
 # python shortcuts
 alias p="python"
