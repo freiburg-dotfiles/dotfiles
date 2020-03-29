@@ -1,6 +1,9 @@
 #! /bin/bash
-xmodmap ~/.xmodmap
 
+# This will set caps as an additional escape.
+# The Mod3 has been bound to escape via xkb.
+# See /usr/share/X11/xkb/comp/{escape_mod3|complete}
+setxkbmap  -option "caps:escape"                    
 
 #python "$HOME/focused_window/toggle_mouse_firefox.py" & disown
 python "$HOME/warn_battery/warn_battery_low.py" & disown

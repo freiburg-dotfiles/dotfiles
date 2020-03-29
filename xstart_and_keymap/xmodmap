@@ -1,4 +1,0 @@
-clear Lock
-keycode 0x42 = Escape
-clear mod3
-add mod3 = Escape
