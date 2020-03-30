@@ -12,6 +12,14 @@
         export PYENV_ROOT="$HOME/.pyenv"
         export PATH="$PYENV_ROOT/bin:$PATH"
 
+- name: install python build dependencies
+  apt:
+    name: [
+        make, build-essential, libssl-dev, zlib1g-dev, libbz2-dev,
+        libreadline-dev, libsqlite3-dev, wget, curl, llvm,
+        libncurses5-dev, libncursesw5-dev, xz-utils, tk-dev, libffi-dev,
+        liblzma-dev, python-openssl, git]
+  become: yes
 
 - name: ensure pyenv init is run after final path export
   blockinfile:
@@ -29,6 +37,7 @@
 
 - name: check if python3.8 already installed
   shell: pyenv versions | grep '3.8' 
+  failed_when: "pyversion_exists.rc == 2" # Empty line makes grep return exit code 1 
   register: pyversion_exists
 
 - name: ensure python3.8 is installed
