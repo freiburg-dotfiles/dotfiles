@@ -1,14 +1,12 @@
 ---
-- name: i3wm
-  apt: name="i3-wm" state=present update_cache=yes
-  become: yes
-
-- name: i3status
-  apt: name="i3status" state=present update_cache=yes
-  become: yes
-
-- name: i3lock
-  apt: name="i3lock" state=present update_cache=yes
+- name: i3wm, i3status, i3lock
+  apt:
+      name:
+          - "i3-wm"
+          - "i3status"
+          - "i3lock"
+      state: present
+      update_cache: yes
   become: yes
 
 - name: configuration directory
@@ -20,8 +18,8 @@
 
 - name: i3wm and statusbar configuration
   copy:
-    src: {{ item.src }}
-    dest: {{ item.dest }}
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     mode: 0600
     owner: "{{ user }}"
   loop:
@@ -32,7 +30,6 @@
   copy:
     src: '{{ playbook_dir }}/../../i3/i3_layout_start.sh'
     dest: '/home/{{ user }}/i3_layout_start.sh' 
-    dest: {{ item.dest }}
     mode: 0700
     owner: "{{ user }}"
 
