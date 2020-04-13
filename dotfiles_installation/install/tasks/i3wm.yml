@@ -1,14 +1,12 @@
 ---
-- name: i3wm
-  apt: name="i3-wm" state=present update_cache=yes
-  become: yes
-
-- name: i3status
-  apt: name="i3status" state=present update_cache=yes
-  become: yes
-
-- name: i3lock
-  apt: name="i3lock" state=present update_cache=yes
+- name: i3wm, i3status, i3lock
+  apt:
+      name:
+          - "i3-wm"
+          - "i3status"
+          - "i3lock"
+      state: present
+      update_cache: yes
   become: yes
 
 - name: configuration directory
@@ -19,15 +17,25 @@
     owner: "{{ user }}"
 
 - name: i3wm and statusbar configuration
-  copy: src={{ item.src }} dest={{ item.dest }}
-  with_items:
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0600
+    owner: "{{ user }}"
+  loop:
     - { src: '{{ playbook_dir }}/../../i3/config', dest: '/home/{{ user }}/.i3/config' }
     - { src: '{{ playbook_dir }}/../../i3/i3status.conf', dest: '/home/{{ user }}/.i3/i3status.conf' }
-    - { src: '{{ playbook_dir }}/../../i3/i3_layout_start.sh', dest: '/home/{{ user }}/i3_layout_start.sh' }
+
+- name: i3wm and statusbar configuration
+  copy:
+    src: '{{ playbook_dir }}/../../i3/i3_layout_start.sh'
+    dest: '/home/{{ user }}/i3_layout_start.sh' 
+    mode: 0700
+    owner: "{{ user }}"
 
 - name: copy custom caps compatibilty file for xkb to xkb/compat 
   copy: src={{ item.src }} dest={{ item.dest }}
-  with_items:
+  loop:
     - { src: '{{ playbook_dir }}/../../xkb/custom_escape_to_mod3', dest: '/usr/share/X11/xkb/compat/escape_mod3' }
     - { src: '{{ playbook_dir }}/../../xkb/custom_complete_comp', dest: '/usr/share/X11/xkb/compat/complete' }
   become: yes
