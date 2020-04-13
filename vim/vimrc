@@ -400,7 +400,7 @@ endfunction
 " }}} Helper functions "
 
     " For python: write shebang line and make executable
-    autocmd BufNewFile *.py :call WriteShebang("\#!/usr/bin/python3", "\# -*- coding: iso-8859-15 -*-")
+    autocmd BufNewFile *.py :call WriteShebang("\#!/usr/bin/python3")
     autocmd BufNewFile *.tex :call WriteShebang("\% vim:foldmethod=marker commentstring=%%s foldmarker=<@<,>@>")
     autocmd BufNewFile *.sh :call WriteShebang("\#!/bin/sh")
     autocmd BufNewFile *.h :call WriteHeaderIfndef()
