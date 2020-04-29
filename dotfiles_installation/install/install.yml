@@ -50,4 +50,7 @@
 
       - include: tasks/zathura.yml
         tags: [ "zathura", "requires-x", "x-server", "gui" ]
+     
+      - include: tasks/python.yml
+        tags: ["pyenv"]
       
